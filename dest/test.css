@@ -1,0 +1,12 @@
+.red {
+  color: red;
+}
+.red .blue {
+  color: blue;
+}
+.red .green {
+  color: green;
+}
+.red .green .gray {
+  color: gray;
+}
