@@ -6,3 +6,13 @@
 .gitignore 中要写上 /.idea/workspace.xml
 如果已经不幸之前commit workspace.xml 的话，必须执行以下命令
 $ git rm --cached .idea/workspace.xml
+
+当远程仓库上已经有.idea文件夹，.gitignore文件中的配置不起作用。可以使用下面的命令行。
+这个会删掉你的本地仓库里的文件，并上传到远程仓库。实现删除远程仓库文件夹的效果。
+//Steps to remove directory
+
+git rm -r --cached FolderName
+git commit -m "Removed folder from repository"
+git push origin master
+
+参考链接：http://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore
