@@ -2,3 +2,7 @@
 解决办法：
 先执行 git rm -r --cached .idea
 再重新加入.gitignore文件（加入方法可参考.gitignore文件中.idea的配置）
+
+.gitignore 中要写上 /.idea/workspace.xml
+如果已经不幸之前commit workspace.xml 的话，必须执行以下命令
+$ git rm --cached .idea/workspace.xml

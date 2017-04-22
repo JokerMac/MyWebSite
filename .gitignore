@@ -76,3 +76,4 @@ $RECYCLE.BIN/
 
 #some local setting files
 /.idea
+/.idea/workspace.xml
