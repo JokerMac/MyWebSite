@@ -1,0 +1,17 @@
+curly 表示所有的代码块必须使用大括号
+eqeqeq 表示判断相等时，必须使用 ===
+immed 表示立即执行函数必须用括号包起来 (function () { } ());
+noarg 表示禁止使用 arguments.caller 和 arguments.callee
+noempty 表示禁止出现空的代码块 { }
+quotmark
+是引号的使用规则，有以下四个选项
+false : 不检查
+true : 检查一致性（要么都是单引号，要么都是双引号）
+single : 必须都是单引号
+double : 必须都是双引号
+
+undef 表示所有的局部变量都必须先声明再使用
+unused 表示禁止变量已经声明，但却不使用
+node 表明你的项目是NodeJS项目，require等node特有的全局函数将通过检查
+
+以上只是少数常见的配置项目，请到官网查看完整项目列表：JSHint Options

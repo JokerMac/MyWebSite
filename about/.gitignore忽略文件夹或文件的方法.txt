@@ -1,0 +1,4 @@
+忽略无效的原因是：对应的目录或者文件已经被git跟踪，此时再加入.gitignore后就无效了，
+解决办法：
+先执行 git rm -r --cached .idea
+再重新加入.gitignore文件（加入方法可参考.gitignore文件中.idea的配置）
