@@ -12,5 +12,6 @@
   "regexp": true,
   "browser": true,
   "devel": true,
-  "node": true
+  "node": true,
+  "quotmark": true
 }
