@@ -15,3 +15,13 @@ unused 表示禁止变量已经声明，但却不使用
 node 表明你的项目是NodeJS项目，require等node特有的全局函数将通过检查
 
 以上只是少数常见的配置项目，请到官网查看完整项目列表：JSHint Options
+
+"globals": {//全局变量配置，这样才能正常使用angular等外部库不报错
+    "jQuery": true,
+    "document": true,
+    "window": true,
+    "angular": true,
+    "_": true,
+    "$": true,
+    "require":true
+  }

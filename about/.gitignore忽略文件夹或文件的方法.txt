@@ -1,4 +1,4 @@
-忽略无效的原因是：对应的目录或者文件已经被git跟踪，此时再加入.gitignore后就无效了，
+﻿忽略无效的原因是：对应的目录或者文件已经被git跟踪，此时再加入.gitignore后就无效了，
 解决办法：
 先执行 git rm -r --cached .idea
 再重新加入.gitignore文件（加入方法可参考.gitignore文件中.idea的配置）
@@ -16,3 +16,5 @@ git commit -m "Removed folder from repository"
 git push origin master
 
 参考链接：http://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore
+
+http://blog.csdn.net/u012636086/article/details/38357825

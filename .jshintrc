@@ -5,13 +5,27 @@
   "eqnull": true,
   "expr": true,
   "immed": true,
-  "newcap": true,
+  "newcap": false,
   "noempty": true,
   "noarg": true,
-  "undef": true,
+  "latedef": false,
+//  "undef": true,
   "regexp": true,
   "browser": true,
   "devel": true,
   "node": true,
-  "quotmark": true
+  "quotmark": true,
+  "strict": false,
+  "indent": 4,
+  "debug": true,
+//  "unused": true,
+  "globals": {
+    "jQuery": true,
+    "document": true,
+    "window": true,
+    "angular": true,
+    "_": true,
+    "$": true,
+    "require": true
+  }
 }

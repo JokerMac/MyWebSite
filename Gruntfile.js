@@ -14,22 +14,32 @@ module.exports = function (grunt) {
                 browser: true,
                 jshintrc: '.jshintrc'
             },
-            // build: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js']
-            beforeconcat: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],//合并前检查
-            afterconcat: ['dest/**/*.js']//合并后检查
+            build: ['Gruntfile.js',
+                'dest/dev/*.js',
+                'test/**/*.js']
+            // beforeconcat: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],//合并前检查
+            //afterconcat: ['dest/**/*.js']//合并后检查
         },
-
+        
         uglify: {
             options: {
+                mangle: true,//混淆变量名
                 stripBanners: true,//去除代码中的块注释
                 banner: '/*! <%=pkg.name%>-<%=pkg.version%>.js <%=grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'src/test.js',
-                dest: 'dest/<%=pkg.name%>-<%=pkg.version%>.min.js'
+                // files:{
+                //
+                // },
+                src: 'dest/dev/app_login.js',
+                dest: 'dest/pro/app_login.min.js'
+            },
+            buildall: {//压缩混淆所有为一个文件
+                src: ['dest/dev/*.js'],
+                dest: 'dest/pro/<%=pkg.name%>-<%=pkg.version%>.min.js'
             }
         },
-
+        
         less: {
             options: {
                 paths: ['src']
@@ -42,7 +52,7 @@ module.exports = function (grunt) {
                 ext: '.css'//文件扩展名
             }
         },
-
+        
         concat: {
             options: {
                 separator: '\n\n',
@@ -51,18 +61,18 @@ module.exports = function (grunt) {
             },
             build: {
                 files: {
-                    'dest/concat/concat1.js': ['src/test.js', 'src/test2.js']
+                    'dest/dev/app_login.js': ['src/login/**/*.js']
                 }
             }
         }
     });
-
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-less');
+    
     grunt.loadNpmTasks('grunt-contrib-concat');
-
-    grunt.registerTask('default', ['less', 'concat', 'jshint', 'uglify']);
-    grunt.registerTask('debug', ['less', 'concat', 'jshint']);
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    
+    grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'less']);
+    grunt.registerTask('debug', ['concat', 'jshint', 'less']);
 };
 
