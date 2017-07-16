@@ -1,0 +1,9 @@
+1、less环境已经配置好，会自动压缩。
+2、三大主目录src、src_framework、test的根目录下都有一个index.less。
+以src为例：
+-----------------------start-----------------------
+每当增加模块的时候，如增加login模块，
+①在login模块根目录下建一个login.less文件；
+②将login.less引入到src下的index.less文件中；
+③login.less中引入login模块中的页面的less文件。
+-----------------------end-------------------------

@@ -25,14 +25,24 @@ module.exports = function (grunt) {
             options: {
                 mangle: true,//混淆变量名
                 stripBanners: true,//去除代码中的块注释
-                banner: '/*! <%=pkg.name%>-<%=pkg.version%>.js <%=grunt.template.today("yyyy-mm-dd") %> */\n'
+                banner: '/*! <%=pkg.name%>-<%=pkg.version%>.js <%=grunt.template.today("yyyy-mm-dd") %> */'
+                // banner: '/*! <%=pkg.name%>-<%=pkg.version%>.js <%=grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                // files:{
-                //
-                // },
-                src: 'dest/dev/app_login.js',
-                dest: 'dest/pro/app_login.min.js'
+                files: [{
+                    expand: true,
+                    src: ['dest/dev/*.js'],
+                    dest: 'dest/pro',
+                    cwd: '.',
+                    rename: function (dest, src) {
+                        // To keep the source js files and make new files as `*.min.js`:
+                        // return dest + '/' + src.replace('.js', '.min.js');
+                        // Or to override to src:
+                        var arr = src.split('/');
+                        src = arr[arr.length - 1];
+                        return dest + '/' + src.replace('.dev.js', '.min.js');
+                    }
+                }]
             },
             buildall: {//压缩混淆所有为一个文件
                 src: ['dest/dev/*.js'],
@@ -41,15 +51,23 @@ module.exports = function (grunt) {
         },
         
         less: {
-            options: {
-                paths: ['src']
-            },
-            build: {
-                expand: true,
-                cwd: 'src',//编译路径
-                src: '**/*.less',
-                dest: 'dest',//生成文件路径
-                ext: '.css'//文件扩展名
+            compile: {
+                options: {
+                    paths: ['MyWebSite'],
+                    compress: true//是否压缩
+                },
+                files: {
+                    'dest/style/app_control.min.css': ['src_framework/index.less'],
+                    'dest/style/app.min.css': ['src/index.less'],
+                    'dest/style/app_test.min.css': ['test/index.less']
+                }
+                // build: {
+                //     expand: true,
+                //     cwd: 'src',//编译路径
+                //     src: '**/*.less',
+                //     dest: 'dest/style',//生成文件路径
+                //     ext: '.css'//文件扩展名
+                // }
             }
         },
         
@@ -61,18 +79,70 @@ module.exports = function (grunt) {
             },
             build: {
                 files: {
-                    'dest/dev/app_login.js': ['src/login/**/*.js']
+                    'dest/dev/app.dev.js': ['app.js'],
+                    'dest/dev/app_login.dev.js': ['src/login/**/*.js'],//'!src/login/base.js'感叹号表示排除这个文件
+                    'dest/dev/app_common.dev.js': ['src_framework/common/*.js'],
+                }
+            }
+            // buildall: {//压缩混淆所有为一个文件
+            //     src: ['dest/dev/*.js'],
+            //     dest: 'dest/pro/<%=pkg.name%>-<%=pkg.version%>.min.js'
+            // }
+        },
+        
+        clean: {
+            files: ['dest/*']
+        },
+        
+        copy: {
+            copyHtml: {
+                files: [
+                    {src: ['index.dev.html'], dest: 'index.html'}
+                ]
+            },
+        },
+        
+        'string-replace': {
+            replaceForDevelopment: {
+                files: {'index.html': 'index.dev.html'},
+                options: {
+                    replacements: [{
+                        pattern: /%versionForQueryString%/g,
+                        replacement: 'version=' + grunt.template.today('yyyymmddHHMMss')
+                    }]
+                }
+            },
+            replaceForPublish: {
+                files: {'index.html': 'index.dev.html'},
+                options: {
+                    replacements: [{
+                        pattern: /%versionForQueryString%/g,
+                        replacement: 'version=' + grunt.template.today('yyyymmddHHMMss')
+                    }, {
+                        pattern: /dest\/dev\//g,
+                        replacement: 'dest/pro/'
+                    }, {
+                        pattern: /.dev.js/g,
+                        replacement: '.min.js'
+                    }]
                 }
             }
         }
     });
     
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-concat');//合并
+    grunt.loadNpmTasks('grunt-contrib-uglify');//压缩混淆
+    grunt.loadNpmTasks('grunt-contrib-jshint');//代码错误提示
+    grunt.loadNpmTasks('grunt-contrib-less');//less转为css
+    grunt.loadNpmTasks('grunt-contrib-clean');//删除文件
+    grunt.loadNpmTasks('grunt-contrib-copy');//复制
+    grunt.loadNpmTasks('grunt-string-replace');//替换文件中的文本
     
-    grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'less']);
-    grunt.registerTask('debug', ['concat', 'jshint', 'less']);
+    //开发使用：合并——查错——转css（包括css压缩）——js压缩混淆——复制index.dev.html为index.html——替换index.html中的%versionForQueryString%为日期
+    grunt.registerTask('default', ['concat', 'jshint', 'less', 'uglify:build', 'copy', 'string-replace:replaceForDevelopment']);
+    grunt.registerTask('debug', ['concat', 'jshint', 'less', 'copy', 'string-replace:replaceForDevelopment']);
+    
+    //删除——合并——查错——转css——压缩混淆——复制index.dev.html为index.html——替换index.html中的%versionForQueryString%为日期，js路径为pro，替换.dev.js为.min.js
+    grunt.registerTask('publish', ['clean', 'concat', 'jshint', 'less', 'uglify:build', 'copy', 'string-replace:replaceForPublish']);
 };
 

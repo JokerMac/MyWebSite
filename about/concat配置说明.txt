@@ -1,5 +1,4 @@
 Grunt入门教程之二
-
     Concat插件
     concat是grunt中用来做文件连接的常用插件，比如说你写了一个类库，有三大模块，如：
 
@@ -21,7 +20,7 @@ grunt.initConfig({
       banner: '/*! hello - v1.2.3 - 2014-2-4 */'
     },
     dist: {
-      src: ['a.js', 'b.js', 'c.js'],
+      src: ['a.js', 'b.js', 'c.js'],//'!src/login/base.js'感叹号表示排除这个文件
       dest: 'all.js',
     },
   },});
