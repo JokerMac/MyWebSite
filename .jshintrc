@@ -17,7 +17,7 @@
   "quotmark": true,
   "strict": false,
   "indent": 4,
-  "debug": true,
+  "debug": false,
 //  "unused": true,
   "globals": {
     "jQuery": true,

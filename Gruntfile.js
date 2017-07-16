@@ -2,6 +2,14 @@
  * Created by HZB on 2017/4/19.
  */
 module.exports = function (grunt) {
+    var buildOptions = {
+        concatFileOptions: {
+            'dest/dev/app.dev.js': ['app.js'],
+            'dest/dev/app_login.dev.js': ['src/login/**/*.js'],//'!src/login/base.js'感叹号表示排除这个文件
+            'dest/dev/app_common.dev.js': ['src_framework/common/*.js'],
+        }
+    };
+    
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
@@ -78,11 +86,7 @@ module.exports = function (grunt) {
                 banner: '/*! <%=pkg.name%>-<%=pkg.version%>.concat.js <%=grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                files: {
-                    'dest/dev/app.dev.js': ['app.js'],
-                    'dest/dev/app_login.dev.js': ['src/login/**/*.js'],//'!src/login/base.js'感叹号表示排除这个文件
-                    'dest/dev/app_common.dev.js': ['src_framework/common/*.js'],
-                }
+                files: buildOptions.concatFileOptions
             }
             // buildall: {//压缩混淆所有为一个文件
             //     src: ['dest/dev/*.js'],
