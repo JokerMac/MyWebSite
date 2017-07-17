@@ -1,0 +1,48 @@
+.login-index {
+  @login-index-content-width: 20rem;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0.125rem 0;
+    width: @login-index-content-width;
+    margin-left: -@login-index-content-width/2;
+    height: @login-index-content-width/2;
+    margin-top: -@login-index-content-width/4;
+  }
+  .user-name-container, .pass-word-container {
+    height: 3.5rem;
+    line-height: 3.5rem;;
+  }
+
+  .user-name-text, .pass-word-text {
+    width: 5rem;
+    display: inline-block;
+    text-align: left;
+    float: left;
+    height: @header-height;
+    line-height: @header-height;
+  }
+
+  .user-name-input, .pass-word-input {
+    width: 15rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-bottom: @border-01;
+  }
+
+  .confirm-button {
+    background-color: @button-color-01;
+    width: 100%;
+    border: 0;
+    height: 2.75rem;
+    color: #fff;
+  }
+
+  .user-name-text, .pass-word-text, .user-name-input, .pass-word-input, .confirm-button {
+    font-size: @font-size-01;
+  }
+}
