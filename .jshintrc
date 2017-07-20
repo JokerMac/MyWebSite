@@ -9,7 +9,7 @@
   "noempty": true,
   "noarg": true,
   "latedef": false,
-//  "undef": true,
+  "undef": true,
   "regexp": true,
   "browser": true,
   "devel": true,
@@ -18,7 +18,7 @@
   "strict": false,
   "indent": 4,
   "debug": false,
-//  "unused": true,
+  //  "unused": true,
   "globals": {
     "jQuery": true,
     "document": true,

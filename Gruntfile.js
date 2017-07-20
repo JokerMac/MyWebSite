@@ -4,7 +4,7 @@
 module.exports = function (grunt) {
     var buildOptions = {
         concatFileOptions: {
-            'dest/dev/app.dev.js': ['app.js'],
+            'dest/dev/app.dev.js': ['app.js', 'app.config.js'],
             'dest/dev/app_login.dev.js': ['src/login/**/*.js'],//'!src/login/base.js'感叹号表示排除这个文件
             'dest/dev/app_common.dev.js': ['src_framework/common/*.js'],
         }
