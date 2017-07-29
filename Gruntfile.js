@@ -4,9 +4,10 @@
 module.exports = function (grunt) {
     var buildOptions = {
         concatFileOptions: {
-            'dest/dev/app.dev.js': ['app.js', 'app.config.js'],
-            'dest/dev/app_login.dev.js': ['src/login/**/*.js'],//'!src/login/base.js'感叹号表示排除这个文件
+            'dest/dev/app.dev.js': ['app.js', 'app.config.js', 'src/*.js'],
             'dest/dev/app_common.dev.js': ['src_framework/common/*.js'],
+            'dest/dev/app_login.dev.js': ['src/login/**/*.js'],//'!src/login/base.js'感叹号表示排除这个文件
+            'dest/dev/app_setting.dev.js': ['src/setting/**/*.js']
         }
     };
     
@@ -66,7 +67,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'dest/style/app_control.min.css': ['src_framework/index.less'],
-                    'dest/style/app.min.css': ['src/index.less'],
+                    'dest/style/app.min.css': ['src/base.less'],
                     'dest/style/app_test.min.css': ['test/index.less']
                 }
                 // build: {

@@ -1,15 +1,18 @@
 var myApp = angular.module('myApp', [
     'ionic',
     'globalModule',
+    'majorEntryModule',
     'commonModule',
-    'loginModule'
+    'loginModule',
+    'settingModule'
 ]);
 
 //这里必须用['$stateProvider',function($stateProvider){}]的写法，不然发布时，由于代码压缩了，浏览器打开会报错。
 myApp.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(true);
     $ionicConfigProvider.views.maxCache(0); //禁止页面缓存的两个方法之一，没有这一句的话，浏览器刷新可能会回到最原始的页面？
-    $urlRouterProvider.otherwise('/login-index');
+    // $urlRouterProvider.otherwise('/login-index');
+    $urlRouterProvider.otherwise('/');
     
     // $stateProvider
     //     .state('login-index', {//状态名

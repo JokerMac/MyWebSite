@@ -1,0 +1,47 @@
+.setting-index {
+  border: 1px solid #e1e2e5;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .14);
+  background: #FAFAFA;
+  border-radius: 0.25rem;
+  margin: 1.5rem 0 16rem 0;
+  height: 100vh;
+  overflow: auto;
+  .content {
+    position: relative;
+    height: 100%;
+  }
+  .left-container, .right-container {
+    height: 100%;
+  }
+  .left-container {
+    float: left;
+    width: 10rem;
+    border-right: 1px solid @border-color-02;
+  }
+  .right-container {
+    position: absolute;
+    left: 10rem;
+    right: 0;
+    bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    & > li {
+      border-bottom: 1px solid @border-color-02;
+      height: 3rem;
+      line-height: 3rem;
+      color: @font-color-02;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1.1rem;
+      &:hover {
+        background-color: #e1e4ea;
+      }
+      &.isSelect {
+        color: #fff;
+        background-color: @background-color-02;
+      }
+    }
+  }
+}
