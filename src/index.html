@@ -1,0 +1,28 @@
+<div class="major-entry">
+    <div class="header">
+        <div class="header-content-container">
+            <div class="left-container">
+                <div class="home">主页</div>
+                <div class="game">游戏</div>
+                <div class="app-info">移动端</div>
+            </div>
+            <div class="right-container">
+                <div class="head-image">
+                    <img src="">
+                </div>
+                <div class="message-board">留言板</div>
+                <div class="sign-in">登录</div>
+                <div class="contact-me">联系我</div>
+                <div class="visitor">历史访客</div>
+                <div class="setting">设置</div>
+                <div class="sign-out" ng-if="false">注销</div>
+            </div>
+        </div>
+    </div>
+    <div class="major-content">
+        <div class="setting-panel"
+             ng-controller="settingIndexController"
+             ng-include="urls.settingUrl">
+        </div>
+    </div>
+</div>
