@@ -7,9 +7,10 @@ var globalModule = angular.module('globalModule', []);
 globalModule.service('global', ['$q',
     function ($q) {
         var o = {
-            data: {},
-            action: {}
+            skin: {
+                default: 'dest/style/app.default.min.css',
+                classicRed: 'dest/style/app.red.min.css'
+            }
         };
-        o.data.hello = '2333';
         return o;
     }]);

@@ -1,4 +1,4 @@
-<div class="setting-index">
+<div class="setting-index" ng-controller="settingIndexController">
     <div class="content">
         <div class="left-container">
             <ul>
@@ -8,7 +8,10 @@
             </ul>
         </div>
         <div class="right-container">
-            右边内容区域
+            <div class="change-skin-panel"
+                 ng-controller="settingChangeSkinIndexController"
+                 ng-include="urls.changeSkinUrl">
+            </div>
         </div>
     </div>
 </div>

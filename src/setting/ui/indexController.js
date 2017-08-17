@@ -6,6 +6,9 @@ settingModule.config(['$stateProvider', function ($stateProvider) {
     });
 }]);
 
-settingModule.controller('settingIndexController', ['$scope',
-    function ($scope) {
+settingModule.controller('settingIndexController', ['$scope', 'global',
+    function ($scope, $$global) {
+        $scope.urls = {
+            changeSkinUrl: 'src/setting/ui/changeSkin/index.html',
+        };
     }]);

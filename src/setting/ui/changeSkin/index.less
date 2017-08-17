@@ -1,0 +1,30 @@
+@box-default-color: #444;
+@box-red-color: #f55d52;
+.setting-changeSkin {
+  overflow: auto;
+  padding-left: 1rem;
+}
+
+.choose-skin-tip {
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.skin-default, .skin-red {
+  float: left;
+  text-align: center;
+  padding: 1rem;
+  .skin-box {
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+  }
+
+  .box-default {
+    background-color: @box-default-color;
+  }
+
+  .box-red {
+    background-color: @box-red-color;
+  }
+}
