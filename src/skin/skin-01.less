@@ -1,15 +1,16 @@
-/*@font-color-01: #444;
+@font-color-01: #f55d52;
 @font-color-02: #99a2aa;
 @font-size-01: 1.1rem;
 
 @background-color-01: #f8f8f8;
-@background-color-02: #00A1D7;
+@background-color-02: #f55d52;
+@background-color-03: #22c064;
 
-@button-color-01: #387ef5;
+@button-color-01: #e5e5e5;
 
 @header-height: 2.75rem;
 
-@border-01: solid 1px #ccc;
+@border-01: solid 1px #22c064;
 @border-color-01: #ccc;
 @border-color-02: #e1e2e5;
 
@@ -30,7 +31,7 @@
 @color-white: white;
 @color-black: black;
 
-/!****start*************全局样式*****************
+//****start*************全局样式*****************
 * {
   margin: 0;
   padding: 0;
@@ -50,12 +51,4 @@ html body {
   border-bottom: solid 1px #ececec;
 }
 
-/!****end***************全局样式******************/
-@import (less)"skin/skin-00.less";//生成不同样式的时候，改这里的名字，还有Gruntfile.js里的样式名。
-//****start*************引入模块样式*****************
-@import (less)"index.less";
-@import (less)"login/login.less";
-@import (less)"setting/setting.less";
-//****end***************引入模块样式*****************
-
-//@url-work-images: '../../images/work';//子项目会用到
+//****end***************全局样式*****************

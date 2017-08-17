@@ -3,12 +3,16 @@
  */
 module.exports = function (grunt) {
     var buildOptions = {
-        concatFileOptions: {
+        concatJsFileOptions: {
             'dest/dev/app.dev.js': ['app.js', 'app.config.js', 'src/*.js'],
             'dest/dev/app_common.dev.js': ['src_framework/common/*.js'],
             'dest/dev/app_login.dev.js': ['src/login/**/*.js'],//'!src/login/base.js'感叹号表示排除这个文件
             'dest/dev/app_setting.dev.js': ['src/setting/**/*.js']
         }
+        // concatLessFileOptions: {
+        //     'dest/temp/style/app.default.min.less': ['src/skin/skin-00.less', 'src/base.less'],
+        //     'dest/temp/style/app.red.min.less': ['src/skin/skin-01.less', 'src/base.less']
+        // }
     };
     
     grunt.initConfig({
@@ -67,7 +71,9 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'dest/style/app_control.min.css': ['src_framework/index.less'],
-                    'dest/style/app.min.css': ['src/base.less'],
+                    // 'dest/style/app.min.css': ['src/base.less'],
+                    'dest/style/app.default.min.css': ['src/base.less'],
+                    // 'dest/style/app.red.min.css': ['src/base.less'],
                     'dest/style/app_test.min.css': ['test/index.less']
                 }
                 // build: {
@@ -86,9 +92,12 @@ module.exports = function (grunt) {
                 stripBanners: true,
                 banner: '/*! <%=pkg.name%>-<%=pkg.version%>.concat.js <%=grunt.template.today("yyyy-mm-dd") %> */\n'
             },
-            build: {
-                files: buildOptions.concatFileOptions
+            buildJs: {
+                files: buildOptions.concatJsFileOptions
             }
+            // buildLess: {
+            //     files: buildOptions.concatLessFileOptions
+            // }
             // buildall: {//压缩混淆所有为一个文件
             //     src: ['dest/dev/*.js'],
             //     dest: 'dest/pro/<%=pkg.name%>-<%=pkg.version%>.min.js'
@@ -144,10 +153,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-string-replace');//替换文件中的文本
     
     //开发使用：合并——查错——转css（包括css压缩）——js压缩混淆——复制index.dev.html为index.html——替换index.html中的%versionForQueryString%为日期
-    grunt.registerTask('default', ['concat', 'jshint', 'less', 'uglify:build', 'copy', 'string-replace:replaceForDevelopment']);
-    grunt.registerTask('debug', ['concat', 'jshint', 'less', 'copy', 'string-replace:replaceForDevelopment']);
+    grunt.registerTask('default', ['concat', 'copy', 'string-replace:replaceForDevelopment', 'jshint', 'less', 'uglify:build']);
+    grunt.registerTask('debug', ['concat', 'copy', 'string-replace:replaceForDevelopment', 'jshint', 'less']);
     
     //删除——合并——查错——转css——压缩混淆——复制index.dev.html为index.html——替换index.html中的%versionForQueryString%为日期，js路径为pro，替换.dev.js为.min.js
-    grunt.registerTask('publish', ['clean', 'concat', 'jshint', 'less', 'uglify:build', 'copy', 'string-replace:replaceForPublish']);
+    grunt.registerTask('publish', ['clean', 'copy', 'string-replace:replaceForPublish', 'concat', 'jshint', 'less', 'uglify:build']);
 };
 
